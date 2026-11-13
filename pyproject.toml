@@ -1,0 +1,27 @@
+[project]
+name = "openbb-cboe"
+version = "1.6.1+crisis1"
+description = "openbb-cboe 1.6.1 modified by CrisisAlpha-Lab (OCC contract filter, UTC snapshot time, quote-request status classification). AGPL-3.0-only."
+readme = "README.md"
+license = "AGPL-3.0-only"
+requires-python = ">=3.10,<4"
+# same constraints as upstream openbb-cboe 1.6.1 (the sidecar installs this package with --no-deps from its hash-pinned lock)
+dependencies = [
+    "aiohttp-client-cache>=0.11.0,<0.12.0",
+    "aiosqlite>=0.20.0,<0.21.0",
+    "openbb-core>=1.6.10,<2.0.0",
+]
+
+[project.urls]
+Source = "https://github.com/CrisisAlpha-Lab/openbb-cboe-patched"
+Upstream = "https://pypi.org/project/openbb-cboe/1.6.1/"
+
+[project.entry-points."openbb_provider_extension"]
+cboe = "openbb_cboe:cboe_provider"
+
+[build-system]
+requires = ["hatchling>=1.27"]  # SPDX string license needs hatchling>=1.27 (PEP 639)
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["openbb_cboe"]

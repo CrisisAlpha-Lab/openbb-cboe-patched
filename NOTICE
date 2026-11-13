@@ -1,0 +1,18 @@
+openbb-cboe 1.6.1+crisis1: modified version of openbb-cboe 1.6.1 (CBOE provider extension for OpenBB Platform).
+
+Upstream: openbb-cboe 1.6.1 (https://pypi.org/project/openbb-cboe/1.6.1/), Copyright (c) 2021-2025 OpenBB Inc.,
+licensed under the GNU Affero General Public License v3.0 only (AGPL-3.0-only). The 1.6.1 wheel declares
+AGPL-3.0-only in its metadata but ships no LICENSE file; LICENSE here is the AGPL-3.0 text and copyright line of the
+last AGPL-licensed upstream tag (OpenBB v4.7.0, https://github.com/OpenBB-finance/OpenBB).
+
+Modified by CrisisAlpha-Lab on 2026-11-12 (every changed block in the sources is marked 'CrisisAlpha-Lab'):
+  - openbb_cboe/models/options_chains.py: drop non-standard OCC contracts (for example the NVDA chain's adjusted
+    "B1VDA..." codes) before parsing; add `quote_timestamp_utc` (CBOE snapshot time, UTC) and `dropped_nonstandard`
+    to results_metadata; check the HTTP status of the quote request (429 -> "[cboe:quota]", other >= 400 ->
+    "[cboe:upstream]") and re-raise network-layer exceptions as the class name only.
+  - openbb_cboe/__init__.py: the Provider description names the source repository below.
+  - openbb_cboe/utils/occ.py, openbb_cboe/utils/status.py: new modules.
+  - pyproject.toml, LICENSE, NOTICE, README.md, PUBLISHED.json: packaging and metadata files (version 1.6.1+crisis1).
+
+Corresponding source of this modified version: https://github.com/CrisisAlpha-Lab/openbb-cboe-patched
+(tag v1.6.1+crisis1). This package is distributed under the same license as upstream: AGPL-3.0-only.
